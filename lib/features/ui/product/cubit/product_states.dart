@@ -5,8 +5,8 @@ abstract class ProductStates {}
 
 class ProductLoadingState extends ProductStates {}
 class ProductSuccessState extends ProductStates {
-  ProductResponseEntity productResponseEntity;
-  ProductSuccessState({required this.productResponseEntity});
+  final List<ProductResponseEntity> products;
+  ProductSuccessState({required this.products});
 }
 
 

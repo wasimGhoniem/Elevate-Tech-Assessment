@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:elevate_tech_assessment/domain/use_cases/product_use_case.dart';
 import 'package:elevate_tech_assessment/features/ui/product/cubit/product_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/failures.dart';
-import '../../../../domain/entities/ProductResponseEntity.dart';
 @injectable
 class ProductViewModel extends Cubit<ProductStates> {
   ProductUseCase productUseCase;
@@ -19,7 +16,7 @@ class ProductViewModel extends Cubit<ProductStates> {
     either.fold((error) {
       emit(ProductErrorState(failures: error));
     }, (response) {
-      emit(ProductSuccessState(productResponseEntity: response));
+      emit(ProductSuccessState(products: response));
     });
   }
 }

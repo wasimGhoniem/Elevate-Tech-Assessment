@@ -18,4 +18,9 @@ class AppStyles {
       color: AppColors.priceColor,
       fontWeight: FontWeight.w400
   );
+  static TextStyle error16W800=GoogleFonts.poppins(
+      fontSize: 16,
+      color: AppColors.redColor,
+      fontWeight: FontWeight.w800
+  );
 }

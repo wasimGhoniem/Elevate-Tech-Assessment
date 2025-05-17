@@ -7,5 +7,7 @@ class AppColors {
   static const Color priceColor=Color(0x99418299);
   static const Color whiteColor=Color(0xFFFFffff);
   static const Color goldColor=Color(0xFFF4B400);
+  static const Color redColor=Color(0xFFAB1B1B);
+  static const Color transparentColor=Colors.transparent;
 
 }

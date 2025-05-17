@@ -9,7 +9,7 @@ class ProductRepositoryImp implements ProductRepository{
   ProductRemoteDataSource productRemoteDataSource;
   ProductRepositoryImp({required this.productRemoteDataSource});
   @override
-  Future<Either<Failures, ProductResponseEntity>> getProduct()async {
+  Future<Either<Failures, List<ProductResponseEntity>>> getProduct()async {
     var either=await productRemoteDataSource.getProduct();
    return either.fold((error)=>left(error),
             (response)=>right(response));

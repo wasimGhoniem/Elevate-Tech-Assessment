@@ -1,7 +1,8 @@
+import 'package:elevate_tech_assessment/dependency_injection/di.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import 'di.config.dart';
+
 
 final getIt = GetIt.instance;
 
