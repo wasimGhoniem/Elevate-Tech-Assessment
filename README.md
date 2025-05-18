@@ -3,8 +3,8 @@
 A Flutter application that displays a grid list of products fetched from the FakeStore API. This project demonstrates clean architecture principles, efficient state management, and modern Flutter development practices.
 
 Screenshots
-![Products Grid View 1](https://github.com/yourusername/your-repo/raw/main/screenshots/screenshot1.jpg)
-![Products Grid View 1](https://github.com/yourusername/your-repo/raw/main/screenshots/screenshot2.jpg)
+![Products Grid View 1](screenshots/screenshot_1.png)
+![Products Grid View 1](screenshots/screenshot_2.png)
 
 
 ## Getting Started
