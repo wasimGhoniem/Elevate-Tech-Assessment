@@ -13,51 +13,35 @@ This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
-This project follows Clean Architecture principles with a clear separation of concerns:
-lib/
-├── core/
-│   ├── di/                    # Dependency Injection setup
-│   ├── error/                 # Error handling
-│   ├── network/               # Network configuration
-│   └── utils/                 # Utility classes and extensions
-├── data/
-│   ├── models/                # Data models
-│   ├── repositories/          # Repository implementations
-│   └── sources/               # Data sources (remote/local)
-├── domain/
-│   ├── entities/              # Business entities/models
-│   ├── repositories/          # Repository interfaces
-│   └── usecases/              # Use cases for business logic
-└── presentation/
-    ├── blocs/                 # State management (Cubits)
-    ├── pages/                 # Screen pages
-    └── widgets/               # Reusable UI components
+ Features
+
+Fetches and displays a list of products from the Fake Store API
+Implements MVVM architecture with Cubit for state management
+Repository pattern for clean data handling
+Dependency Injection using GetIt and Injectable
+Responsive UI design with attention to detail
+Error handling and loading states
+Product detail view with complete product information
+Clean code with proper naming conventions and organization
+Caching strategy for improved performance
 
     
-    Architecture Diagram
-┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
-│                 │      │                 │      │                 │
-│  Presentation   │      │     Domain      │      │      Data       │
-│                 │      │                 │      │                 │
-│  - Cubits       │◄────►│  - Use Cases    │◄────►│  - Repositories │
-│  - Pages        │      │  - Entities     │      │  - Models       │
-│  - Widgets      │      │  - Repositories │      │  - Data Sources │
-│                 │      │    (interfaces) │      │                 │
-└─────────────────┘      └─────────────────┘      └─────────────────┘
-        ▲                                                 ▲
-        │                                                 │
-        └─────────────────────┬─────────────────────────┘
-                              │
-                      ┌───────────────┐
-                      │               │
-                      │     Core      │
-                      │               │
-                      │ - DI          │
-                      │ - Networking  │
-                      │ - Error       │
-                      │ - Utils       │
-                      │               │
-                      └───────────────┘
+Components:
+
+Core: Contains application-wide utilities, dependency injection setup, and network configurations
+Data: Implements the data layer with API models, repositories, and data sources
+Domain: Defines the business entities and repository interfaces
+Presentation: Contains UI components, screens, and state management (Cubits)
+
+🔄 State Management
+The application uses Cubit for state management:
+
+ProductsCubit: Manages the state of the product list screen including loading, success, and error states
+ProductDetailsCubit: Handles the state for individual product details
+
+💉 Dependency Injection
+
+
 Setup Instructions
 Prerequisites
 
