@@ -5,6 +5,7 @@ import 'package:elevate_tech_assessment/core/api/end_points.dart';
 import 'package:elevate_tech_assessment/core/api/status_code.dart';
 import 'package:elevate_tech_assessment/core/errors/failures.dart';
 import 'package:elevate_tech_assessment/core/utils/app_constants.dart';
+import 'package:elevate_tech_assessment/core/errors/HtmlErrorMsg.dart';
 import 'package:elevate_tech_assessment/data/model/ProductResponseDm.dart';
 import 'package:elevate_tech_assessment/domain/repositories/data_sources/remote_data_source/product_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
@@ -22,16 +23,19 @@ class ProductRemoteDataSourceImp implements ProductRemoteDataSource {
       if (connectivityResult.contains(ConnectivityResult.wifi) ||
           connectivityResult.contains(ConnectivityResult.mobile)) {
         var response = await apiManager.getData(endPoint: EndPoints.productApi);
-        var products = (response.data as List)
-            .map((item) => ProductResponseDm.fromJson(item))
-            .toList();
+
         if (response.statusCode! >= StatusCode.ok &&
-            response.statusCode! < StatusCode.multipleChoices) {
-          return right(products);
+            response.statusCode! < StatusCode.multipleChoices&&response.data is List) {
+
+            var products = (response.data as List)
+                .map((item) => ProductResponseDm.fromJson(item))
+                .toList();
+            return right(products);
+
         } else {
-          var errorProduct = ProductResponseDm.fromJson(response.data);
+          var errorProduct = HtmlErrorMessage.fromHtmlString(response.data);
           return left(ServerError(
-            errorMsg: errorProduct.message ?? '',
+            errorMsg: errorProduct.message ,
           ));
         }
       } else {
@@ -40,7 +44,7 @@ class ProductRemoteDataSourceImp implements ProductRemoteDataSource {
         ));
       }
     } catch (e) {
-      return left(ServerError(errorMsg: e.toString()));
+      return left(ServerError(errorMsg:e.toString()));
     }
   }
 }

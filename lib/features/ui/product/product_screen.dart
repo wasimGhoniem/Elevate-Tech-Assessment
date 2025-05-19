@@ -18,25 +18,24 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  ProductViewModel viewModel = getIt<ProductViewModel>();
+
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: Size(430,932),
-      builder: (context,child)=>Scaffold(
+    return BlocProvider(
+      create: (context)=>getIt<ProductViewModel>()..getProducts(),
+      child: Scaffold(
         backgroundColor: AppColors.whiteColor,
         body: SafeArea(
           child: BlocBuilder<ProductViewModel, ProductStates>(
-            bloc: viewModel..getProducts(),
             builder: (context, state) {
               if (state is ProductSuccessState) {
                 return Padding(
-                  padding: EdgeInsets.all(16),
+                  padding:  EdgeInsets.all(16.w),
                   child: GridView.builder(
                     padding: EdgeInsets.only(bottom: 64.h),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 2/3.6.h,
+                        childAspectRatio: 2/3,
                         mainAxisSpacing: 16.h,
                         crossAxisSpacing: 16.w,
                         crossAxisCount: 2),
@@ -48,7 +47,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 );
               } else if (state is ProductErrorState) {
                 return ProductErrorWidget(errorMsg:state.failures.errorMsg ,
-                  onPress: viewModel.getProducts,);
+                  onPress: ()=>context.read<ProductViewModel>().getProducts(),);
               } else {
                 return Center(
                   child: CircularProgressIndicator(

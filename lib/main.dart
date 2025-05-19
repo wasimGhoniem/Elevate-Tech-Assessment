@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:elevate_tech_assessment/features/ui/product/product_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/app_routes.dart';
 import 'core/observers/bloc_observer.dart';
@@ -16,13 +17,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute:AppRoutes.productRoute ,
-      routes:{
-        AppRoutes.productRoute:(context)=>ProductScreen(),
-      } ,
-      themeMode: ThemeMode.light,
+    return ScreenUtilInit(
+      designSize: Size(430,932),
+      builder: (context,child)=>MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute:AppRoutes.productRoute ,
+        routes:{
+          AppRoutes.productRoute:(context)=>ProductScreen(),
+        } ,
+        themeMode: ThemeMode.light,
+      ),
+
+
     );
   }
 }

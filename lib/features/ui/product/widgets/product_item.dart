@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elevate_tech_assessment/core/utils/app_assets.dart';
 import 'package:elevate_tech_assessment/core/utils/app_colors.dart';
+import 'package:elevate_tech_assessment/core/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +20,7 @@ class ProductItem extends StatelessWidget {
 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: AppColors.whiteBlue, width: 2),
+          border: Border.all(color: AppColors.whiteBlue, width: 2.w),
         ),
         child: Column(
           children: [
@@ -33,7 +35,7 @@ class ProductItem extends StatelessWidget {
 
                   child: CachedNetworkImage(
 
-                    imageUrl: item.image!,
+                    imageUrl: item.image??AppAssets.noImage,
                     width: double.infinity,
                     height: 128.h,
                     fit: BoxFit.fill,
@@ -55,27 +57,27 @@ class ProductItem extends StatelessWidget {
                   right: 3.w,
                   child: CircleAvatar(radius: 24.r,
                     backgroundColor: AppColors.whiteColor,
-                    child: Center(
-                      child: IconButton(
-                          onPressed: () {
-                            //todo add to favorite
-                          },
-                          icon: Icon(Icons.favorite_border_rounded,
-                            color: AppColors.primaryColor,)),
-                    ),
+                    child: IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        onPressed: () {
+                          //todo add to favorite
+                        },
+                        icon: Icon(Icons.favorite_border_rounded,
+                          color: AppColors.primaryColor,)),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 8.h,),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding:  EdgeInsets.symmetric(horizontal: 8.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+
                 children: [
                   Text(
-                    item.title!,
+                    item.title??AppConstants.title,
                     style: AppStyles.textColor14W400,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -86,12 +88,12 @@ class ProductItem extends StatelessWidget {
                     children: [
                       Text(
                         'EGP ${item.price}',
-                        style: AppStyles.textColor14W400.copyWith(fontSize: 11),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        style: AppStyles.textColor14W400.copyWith(fontSize: 11.sp),
+
+
                       ),
                       SizedBox(width: 8.w,),
-                      Text('EGP ${(item.price! * 1.2).toInt()}',
+                      Text('EGP ${(item.price??0 * 1.2).toInt()}',
                         style: AppStyles.priceColor11W400.copyWith(
                           decoration: TextDecoration.lineThrough,
                         ),

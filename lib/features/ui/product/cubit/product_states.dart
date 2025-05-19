@@ -11,7 +11,7 @@ class ProductSuccessState extends ProductStates {
 
 
 class ProductErrorState extends ProductStates {
-  Failures failures;
+ final Failures failures;
   ProductErrorState({required this.failures});
 
 }
